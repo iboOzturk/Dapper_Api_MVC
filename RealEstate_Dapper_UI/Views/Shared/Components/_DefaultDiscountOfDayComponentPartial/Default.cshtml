@@ -1,0 +1,39 @@
+﻿@using System.Globalization
+@model List<ResultProductDto>
+<div class="w3l-news" id="news">
+    <section id="grids5-block" class="py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h3 class="title-big text-center">Günün 3 Fırsatı</h3>
+            <div class="row mt-lg-5 mt-4 pt-3">
+                @foreach (var item in Model)
+                {
+                    //col-lg-3 col-md-4 col-6 mt-3
+                    <div class="col-lg-4 col-md-6 col-6 mt-3">
+                        <div class="grids5-info">
+                            <span class="posted-date">
+                                <a href="#blog-single">
+                                    <span class="small">@item.CreateDate.Year</span>
+                                    <span class="big">@item.CreateDate.Day</span>
+                                    <span class="small">
+                                        @CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetAbbreviatedMonthName(item.CreateDate.Month)
+                                    </span>
+                                </a>
+                            </span>
+                            <a href="#blog-single" class="d-block zoom">
+                                <img src="@item.coverImage" alt=""
+                                     class="img-fluid news-image" />
+                            </a>
+                            <div class="blog-info">
+                                <a href="#category" class="category">@item.categoryName</a>
+                                <h4><a href="#blog-single">@item.title</a></h4>
+                                <p>@item.description</p>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>
+</div>

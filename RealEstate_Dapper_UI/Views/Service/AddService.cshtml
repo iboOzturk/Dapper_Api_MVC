@@ -1,0 +1,23 @@
+﻿@model CreateServiceDto
+@{
+    ViewData["Title"] = "AddService";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h1>Yeni Servis Ekleme</h1>
+                <form method="post">
+                    <label>Başlık</label>
+                    <input type="text" asp-for="ServiceName" class="form-control" />
+                    <br />                   
+                  
+                    <button class="btn btn-success">Ekle</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model List<ResultCategoryDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Kategoriler</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Kategori Adı</th>
+                                <th scope="col">Durumu</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.CategoryID</th>
+                                    <td>@item.CategoryName</td>
+                                    <td>                                                                               
+                                      @*   <a href="/Category/SwitchStatus/@item.CategoryID" class="@(item.CategoryStatus ? "btn btn-outline-success" : "btn btn-outline-warning")">
+                                            @(item.CategoryStatus ? "Aktif" : "Pasif")
+                                        </a> *@
+
+                                        @*Stored Procedure Kullanıldı*@
+                                        <a href="/Category/ChangeStatus/@item.CategoryID" class="@(item.CategoryStatus ? "btn btn-outline-success" : "btn btn-outline-warning")">
+                                            @(item.CategoryStatus ? "Aktif" : "Pasif")
+                                        </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">
+                                            Sil
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-info">
+                                            Güncelle
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Category/AddCategory/" class="btn btn-success">Yeni Kategori Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

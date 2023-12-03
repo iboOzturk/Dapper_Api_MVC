@@ -1,0 +1,87 @@
+﻿@model List<ResultPopularLocationDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Popüler Lokasyonlar</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Şehir</th>
+                                <th scope="col">Fotoğraf</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.LocationID</th>
+                                    <td>@item.CityName</td>
+                                    <td><img style="height:50px;width:70px;border-radius:15px;object-fit:cover" src="@item.ImageUrl" /></td>
+
+                                    <td>
+                                        @* <a href="/PopularLocation/DeletePopularLocations/@item.LocationID" class="btn btn-danger">
+                                            Sil
+                                        </a> *@
+                                        <!-- Sil butonu için bir tetikleyici ekleyin -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal-@item.LocationID">
+                                            Sil
+                                        </button>
+
+                                       
+                                        <div class="modal fade" id="confirmDeleteModal-@item.LocationID" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteModalLabel">Silme Onayı</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Silmek istediğinize emin misiniz?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                                                        <a href="/PopularLocation/DeletePopularLocations/@item.LocationID" class="btn btn-danger">Evet, Sil</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/PopularLocation/UpdatePopularLocations/@item.LocationID" class="btn btn-info">
+                                            Güncelle
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/PopularLocation/AddPopularLocations/" class="btn btn-success">Yeni Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+<!-- jQuery and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@2.9.3/dist/umd/popper.min.js" </script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>

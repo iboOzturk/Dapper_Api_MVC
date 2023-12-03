@@ -1,0 +1,56 @@
+﻿@model List<ResultWhoWeAreDetailDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Biz Kimiz</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Başlık</th>
+                                <th scope="col">Alt Başlık</th>
+                                <th scope="col">Açıklama 1</th>
+                                <th scope="col">Açıklama 2</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.WhoWeAreDetailID</th>
+                                    <td>@item.Title</td>
+                                    <td>@item.Subtitle</td>
+                                    <td>@item.Description1</td>
+                                    <td>@item.Description2</td>
+                                   
+                                    <td>
+                                        <a href="/WhoWeAre/DeleteWhoWeAre/@item.WhoWeAreDetailID" class="btn btn-danger">
+                                            Sil
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/WhoWeAre/UpdateWhoWeAre/@item.WhoWeAreDetailID" class="btn btn-info">
+                                            Güncelle
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/WhoWeAre/AddWhoWeAre/" class="btn btn-success">Yeni Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

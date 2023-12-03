@@ -1,0 +1,31 @@
+﻿@model CreatePopularLocationDto
+@{
+    ViewData["Title"] = "AddPopularLocations";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h1>Yeni Servis Ekleme</h1>
+                <form method="post" enctype="multipart/form-data">
+                    <label>Şehir</label>
+                    <input type="text" asp-for="CityName" class="form-control" />
+                    <br />
+                  @*   <label>Fotoğraf</label>
+                    <input type="text" asp-for="ImageUrl" class="form-control" />
+                    <br /> *@
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Fotoğraf</label>
+                        <input class="form-control" name="ImageUrl" type="file" id="formFile">
+                    </div>
+                    <br />
+
+                    <button class="btn btn-success">Ekle</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

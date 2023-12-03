@@ -1,0 +1,42 @@
+﻿@model List<ResultProductDto>
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Son 5 İlan</h6>
+            <a href="/Products/Index/">Hepsini Gör</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">Tarih</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Fiyat</th>
+                        <th scope="col">Şehir</th>
+                        <th scope="col">Tür</th>
+                        <th scope="col">Günün Ürünü mü</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CreateDate.ToString("dd.MM.yyyy")</td>
+
+                            <td>@item.title</td>
+                            <td>@item.price.ToString("0.00")</td>
+                            <td>@item.city</td>
+                            <td>@item.type</td>
+                            <td>@(item.DealOfTheDay ? "✓" : "✗")</td>
+                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                        </tr>
+                    }
+                 
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
