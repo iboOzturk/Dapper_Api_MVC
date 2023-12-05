@@ -19,7 +19,7 @@ namespace RealEstate_Dapper_Api.Controllers
         [HttpGet]
         public async Task<IActionResult> CategoryList() 
         {
-            var values=await _categoryRepository.GetAllCategoryAsync();
+            var values=await _categoryRepository.GetAllCategoryAsync();            
             return Ok(values);
         }
         [HttpGet("{id}")]
@@ -38,8 +38,15 @@ namespace RealEstate_Dapper_Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            _categoryRepository.DeleteCategoryAsync(id);
-            return Ok("Başarılı bir şekilde silindi");
+            bool result=await _categoryRepository.DeleteCategoryAsync(id);
+            if (result)
+            {
+                return Ok("Başarılı bir şekilde silindi");
+            }
+            else
+            {
+                return NotFound("Böyle Bir ID bulunamadı");
+            }
         }
 
         [HttpPut]

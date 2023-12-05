@@ -55,7 +55,7 @@ namespace RealEstate_Dapper_UI.Controllers
             var client= _httpClientFactory.CreateClient();           
             var responseMessage = await client.DeleteAsync(url+id);
             if (responseMessage.IsSuccessStatusCode)
-            {
+            {                
                 return RedirectToAction("Index", "Category");
             }
             return View();
