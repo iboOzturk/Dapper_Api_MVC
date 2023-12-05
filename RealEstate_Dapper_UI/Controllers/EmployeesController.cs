@@ -83,5 +83,17 @@ namespace RealEstate_Dapper_UI.Controllers
             return View();
 
         }
+
+        public async Task<IActionResult> ChangeEmpStatus(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync(url + "ChangeEmployeeStatus?id="+id,content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

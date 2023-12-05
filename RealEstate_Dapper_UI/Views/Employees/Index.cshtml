@@ -34,7 +34,7 @@
                                     <td>@item.PhoneNumber</td>
                                     <td>
 
-                                        <a href="#" class="@(item.Status ? "btn btn-outline-success" : "btn btn-outline-warning")">
+                                        <a href="/Employees/ChangeEmpStatus/@item.EmployeeID" class="@(item.Status ? "btn btn-outline-success" : "btn btn-outline-warning")">
                                             @(item.Status ? "Aktif" : "Pasif")
                                         </a>
 

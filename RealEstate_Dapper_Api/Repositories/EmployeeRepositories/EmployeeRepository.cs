@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using RealEstate_Dapper_Api.DTOs.EmployeeDtos;
 using RealEstate_Dapper_Api.Models.DapperContext;
+using System.Data;
 
 namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
 {
@@ -12,6 +13,17 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
         {
             _context = context;
         }
+
+        public async void ChangeStatusAsync(int id)
+        {
+            DynamicParameters parametres = new();
+            parametres.Add("@employeeID", id);
+            using (var connection = _context.CreateConnection())
+            {
+               await connection.ExecuteAsync("ChangeEmployeeStatus", parametres, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public async void CreateEmployeeAsync(CreateEmployeeDto createEmployeeDto)
         {
             string query = "insert into Employee (Name,Title,Mail,PhoneNumber,ImageUrl,Status)" +

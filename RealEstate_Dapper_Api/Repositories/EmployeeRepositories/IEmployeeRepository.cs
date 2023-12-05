@@ -9,6 +9,7 @@ namespace RealEstate_Dapper_Api.Repositories.EmployeeRepositories
         void CreateEmployeeAsync(CreateEmployeeDto createEmployeeDto);
         void DeleteEmployeeAsync(int id);   
         void UpdateEmployeeAsync(UpdateEmployeeDto updateEmployeeDto);
+        void ChangeStatusAsync(int id);
 
     }
 }
