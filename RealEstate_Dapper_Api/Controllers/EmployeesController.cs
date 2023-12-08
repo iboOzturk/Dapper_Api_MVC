@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RealEstate_Dapper_Api.DTOs.CategoryDtos;
+﻿using Microsoft.AspNetCore.Mvc;
 using RealEstate_Dapper_Api.DTOs.EmployeeDtos;
 using RealEstate_Dapper_Api.Repositories.EmployeeRepositories;
 

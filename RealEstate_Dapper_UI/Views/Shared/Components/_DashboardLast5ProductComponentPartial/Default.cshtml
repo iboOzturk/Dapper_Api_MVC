@@ -23,7 +23,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.CreateDate.ToString("dd.MM.yyyy")</td>
+                            <td>@(((DateTime)item.CreateDate).ToString("dd MMM yyyy"))</td>
 
                             <td>@item.title</td>
                             <td>@item.price.ToString("0.00")</td>
