@@ -30,7 +30,7 @@
                                             @(item.CategoryStatus ? "Aktif" : "Pasif")
                                         </a> *@
 
-                                        @*Stored Procedure Kullanıldı*@
+                                        @*Stored Procedure Kullanıldı*@                                       
                                         <a href="/Category/ChangeStatus/@item.CategoryID" class="@(item.CategoryStatus ? "btn btn-outline-success" : "btn btn-outline-warning")">
                                             @(item.CategoryStatus ? "Aktif" : "Pasif")
                                         </a>
@@ -42,9 +42,9 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-info">
+                                        <button class="btn btn-info" onclick="window.location.href='/Category/UpdateCategory/@item.CategoryID'">
                                             Güncelle
-                                        </a>
+                                        </button>
                                     </td>
 
                                 </tr>
