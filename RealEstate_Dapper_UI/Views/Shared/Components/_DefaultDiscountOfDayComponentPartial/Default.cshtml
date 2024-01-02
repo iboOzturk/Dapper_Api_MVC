@@ -26,7 +26,22 @@
                             <div class="blog-info">
                                 <a href="#category" class="category">@item.categoryName</a>
                                 <h4><a href="#blog-single">@item.title</a></h4>
-                                <p>@item.description</p>
+                                <p>
+                                    @{
+                                        var description = @item.description;
+                                        if (description.Length > 120)
+                                        {
+                                            var truncatedDescription = description.Substring(0, 120).TrimEnd();
+                                            var lastSpaceIndex = truncatedDescription.LastIndexOf(" ");
+                                            truncatedDescription = truncatedDescription.Substring(0, lastSpaceIndex);
+                                            <text>@truncatedDescription...</text>
+                                        }
+                                        else
+                                        {
+                                            <text>@description</text>
+                                        }
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
