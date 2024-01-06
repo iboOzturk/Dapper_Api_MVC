@@ -1,63 +1,84 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.SignalR
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
-        <div class="col-12">
+@section Scripts {
 
-            <!-- Sale & Revenue Start -->
+    <script type="text/javascript">
+        $(document).ready(() => {
+            var con = new signalR.HubConnectionBuilder().withUrl("https://localhost:44383/SignalRHub").build();
+            $("#connstatus").text(con.state);
+            console.log(con.state);
+
+            con.start().then(() => {
+                console.log(con.state);
+                $("#connstatus").text(con.state);
+
+            }).catch((err) => { console.log(err) });
+        })
+    </script>
+
+
+}
+
+<div class="col-12">
+    <div class="row">
+        <div class="col-md-8 offset-2 mt-2">
+            <div class="alert alert-warning">Bağlantı durumu:<strong id="connstatus"></strong></div>
+        </div>
+    </div>
+    <!-- Sale & Revenue Start -->
     @await Component.InvokeAsync("_DashboardStatisticsComponentPartial")
-            <!-- Sale & Revenue End -->
-
-            <!-- Sales Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide Sales</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
+    <!-- Sale & Revenue End -->
+    <!-- Sales Chart Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Worldwide Sales</h6>
+                        <a href="">Show All</a>
                     </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Salse & Revenue</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
+                    <canvas id="worldwide-sales"></canvas>
                 </div>
             </div>
-            <!-- Sales Chart End -->
-
-            <!-- Recent Sales Start -->
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Salse & Revenue</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <canvas id="salse-revenue"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sales Chart End -->
+    <!-- Recent Sales Start -->
     @await Component.InvokeAsync("_DashboardLast5ProductComponentPartial")
 
-            <!-- Recent Sales End -->
-
-            <!-- Widgets Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
+    <!-- Recent Sales End -->
+    <!-- Widgets Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
             @await Component.InvokeAsync("_DashboardLast4ContactComponentPartial")
 
             <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Calender</h6>
-                                <a href="">Show All</a>
-                            </div>
-                            <div id="calender"></div>
-                        </div>
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Calender</h6>
+                        <a href="">Show All</a>
                     </div>
-
-            @await Component.InvokeAsync("_DashboardToDoListComponentPartial")
+                    <div id="calender"></div>
                 </div>
             </div>
-            <!-- Widgets End -->
 
+            @await Component.InvokeAsync("_DashboardToDoListComponentPartial")
         </div>
- 
+    </div>
+    <!-- Widgets End -->
+
+</div>
